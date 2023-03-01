@@ -11,11 +11,11 @@ export default function ContactList({
                         <button onClick={() =>{
                             onSelect(contact);
                         }}>
-                            {contact.name}
+                        {contact.name}
                         </button>
-                        </li>
+                    </li>
                 )}
             </ul>
         </section>
-    )
+    );
 }

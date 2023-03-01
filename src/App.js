@@ -1,23 +1,55 @@
-import { useState } from 'react';
-import Chat from './chat.js';
-import ContactList from './ContactList.js';
+import { useState } from "react";
+import addTask from './AddTask.js';
+import TaskList from './TaskList.js';
 
-export default function Messenger(){
-  const[to, setTo] = useState(contacts[0])
-  return(
-    <div>
-      <ContactList
-      contacts={contacts}
-      selectedContact={to}
-      onSelect={contact => setTo(contact)}
+
+export default function TaskApp(){
+  const[tasks, setTasks] = useState(intialTasks);
+
+  function handleAddTask(text){
+    setTasks([
+      ...tasks,
+      {
+        id: nextId++,
+        text: text,
+        done:false,
+      },
+    ]);
+  }
+
+
+  function handleChangeTask(task){
+    setTasks(
+      tasks.map((t)=>{
+        if(t.id ===task.id){
+          return task;
+        } else {
+          return t;
+        }
+      })
+    )
+  }
+
+function handleDeleteTask(taskID){
+  setTasks(task.filter((t)=> t.id ! == taskID));
+}
+return (
+  <>
+  <h1>Prague itinerary</h1>
+  <AddTask onAddTask={handleAddTask} />
+  <TaskList
+        tasks={tasks}
+        onChangeTask={handleChangeTask}
+        onDeleteTask={handleDeleteTask}
       />
-      <Chat contact={to} />
-    </div>
-  )
+  </>
+);
 }
 
-const contacts = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' }
+let nextID = 3;
+
+const initialTasks = [
+  {id: 0, text: 'Visit Kafka Museum', done: true},
+  {id: 1, text: 'Watch a puppet show', done: false},
+  {id: 2, text: 'Lennon Wall pic', done: false},
 ];
