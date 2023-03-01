@@ -1,5 +1,5 @@
 import { useState } from "react";
-import addTask from './AddTask.js';
+import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
 
@@ -31,7 +31,7 @@ export default function TaskApp(){
   }
 
 function handleDeleteTask(taskID){
-  setTasks(task.filter((t)=> t.id ! == taskID));
+  setTasks(tasks.filter((t)=> t.id !== taskID));
 }
 return (
   <>
@@ -46,7 +46,7 @@ return (
 );
 }
 
-let nextID = 3;
+let nextId = 3;
 
 const initialTasks = [
   {id: 0, text: 'Visit Kafka Museum', done: true},
