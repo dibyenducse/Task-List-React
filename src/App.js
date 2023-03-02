@@ -4,7 +4,7 @@ import TaskList from './TaskList.js';
 
 
 export default function TaskApp(){
-  const[tasks, setTasks] = useState(intialTasks);
+  const[tasks, setTasks] = useState(initialTasks);
 
   function handleAddTask(text){
     setTasks([
